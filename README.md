@@ -1,3 +1,7 @@
 # Kemono Friends - Live Wallpaper
 
-Sandstar volcano
+Sandstar Volcano
+
+## Dependencies
+
+* [SFML](https://github.com/SFML/SFML)
