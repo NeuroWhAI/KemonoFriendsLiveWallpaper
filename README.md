@@ -1,5 +1,6 @@
 # Kemono Friends - Live Wallpaper
 
+![Demo](./demo.gif)
 Sandstar Volcano
 
 ## Dependencies
