@@ -189,6 +189,20 @@ namespace WallpaperManager
             public RECT WorkArea { get; set; }
         }
 
+        public const int GWL_HWNDPARENT = (-8);
+        public const int GWL_ID = (-12);
+        public const int GWL_STYLE = (-16);
+        public const int GWL_EXSTYLE = (-20);
+
+        // Extended Window Styles 
+        public const Int32 WS_EX_DLGMODALFRAME = 0x0001;
+        public const Int32 WS_EX_TOOLWINDOW = 0x0080;
+        public const Int32 WS_EX_CLIENTEDGE = 0x0200;
+        public const Int32 WS_EX_STATICEDGE = 0x20000;
+        public const Int32 WS_EX_APPWINDOW = 0x40000;
+
+        public static readonly IntPtr HWND_BOTTOM = new IntPtr(1);
+
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
@@ -308,5 +322,11 @@ namespace WallpaperManager
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
     }
 }

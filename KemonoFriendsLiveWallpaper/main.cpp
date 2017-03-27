@@ -22,7 +22,7 @@ int main()
 
 
 	sf::RenderWindow window(sf::VideoMode(wallpaper.getSize().x, wallpaper.getSize().y),
-		"Kemono Friends Live Wallpaper");
+		"Kemono Friends Live Wallpaper", sf::Style::None);
 	window.setFramerateLimit(120); // 120fps
 
 
