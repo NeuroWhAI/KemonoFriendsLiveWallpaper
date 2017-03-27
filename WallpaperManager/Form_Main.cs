@@ -68,6 +68,21 @@ namespace WallpaperManager
 
                 this.comboBox_screens.Items.Add(string.Format("Screen {0}", screenNumber + 1));
             }
+
+
+            if (m_option.AutoRun)
+            {
+                Task.Factory.StartNew(new Action(() =>
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        System.Threading.Thread.Sleep(2500);
+
+                        this.Hide();
+                        this.notifyIcon_tray.Visible = true;
+                    }));
+                }));
+            }
         }
 
         private void Form_Main_FormClosing(object sender, FormClosingEventArgs e)
