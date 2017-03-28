@@ -160,8 +160,6 @@ namespace WallpaperManager
         {
             this.Hide();
             this.notifyIcon_tray.Visible = true;
-
-            // FIXME: Pin wallpaper again.
         }
 
         private void notifyIcon_tray_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -215,6 +213,8 @@ namespace WallpaperManager
             bool success = wallpaper.StartWallpaper();
             
             this.Activate();
+            this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Normal;
 
             if (success)
             {
