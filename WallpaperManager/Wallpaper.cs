@@ -151,8 +151,8 @@ namespace WallpaperManager
         {
             if (m_wallpaperHandle != IntPtr.Zero)
             {
-                ScreenManager.FillScreen(m_wallpaperHandle, ScreenManager.Screens[screenNumber]);
                 ScreenManager.FixBehindDesktopIcon(m_wallpaperHandle);
+                ScreenManager.FillScreen(m_wallpaperHandle, ScreenManager.Screens[screenNumber]);
             }
         }
 
