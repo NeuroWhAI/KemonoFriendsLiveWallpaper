@@ -30,24 +30,29 @@ private:
 
 
 private:
-	std::vector<std::unique_ptr<Sandstar>> m_sandstarTemplates;
+	std::vector<std::unique_ptr<Sandstar>> m_spreadTemplates;
+	std::vector<std::unique_ptr<Sandstar>> m_flowTemplates;
+	float m_spreadGage;
+	float m_flowGage;
 	const sf::Vector2f m_position;
 	std::deque<std::unique_ptr<Sandstar>> m_sandstars;
-	int m_gage;
 
 
 private:
 	ParticleEngine m_senseEngine1;
 	ParticleEngine m_senseEngine2;
+	ParticleEngine m_senseEngine3;
+	ParticleEngine m_senseEngine4;
 
 
 private:
 	std::mt19937 m_randEngine;
-	std::uniform_int_distribution<> m_randomIndex;
+	std::uniform_int_distribution<> m_randomSpread;
+	std::uniform_int_distribution<> m_randomFlow;
 
 
 public:
-	void update();
+	void update(float framerate);
 	void draw(sf::RenderTarget& target, sf::RenderStates states);
 };
 

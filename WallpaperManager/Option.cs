@@ -55,7 +55,7 @@ namespace WallpaperManager
                         this.ScreenNumbers.Add(idx);
                     }
 
-                    this.AutoRun = (sr.ReadLine().Trim() == "y");
+                    this.AutoRun = (sr.ReadLine() == "y");
                 }
             }
             catch (FileNotFoundException)

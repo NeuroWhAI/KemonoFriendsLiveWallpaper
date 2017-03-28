@@ -21,16 +21,17 @@ private:
 	sf::Vector2f m_position;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_accel;
-	int m_life;
+	float m_life;
 
 
 public:
-	void update();
+	void update(float framerate);
 	void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 
 public:
 	void setParticleLife(int life);
+	void setMulScale(float scale);
 	void shoot(const sf::Vector2f& startPosition, const sf::Vector2f& startVelocity,
 		const sf::Vector2f& accel);
 	bool isDead() const;

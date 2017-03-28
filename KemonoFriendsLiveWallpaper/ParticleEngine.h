@@ -2,7 +2,7 @@
 #define __KEMONO_FRIENDS_LIVE_WALLPAPER__PARTICLE_ENGINE_H__
 
 
-#include <vector>
+#include <list>
 #include <memory>
 #include <random>
 
@@ -16,13 +16,8 @@
 class ParticleEngine
 {
 public:
-	ParticleEngine(const sf::Texture& texture, int birth, int birthOffset = 0);
+	ParticleEngine(const sf::Texture& texture, int birth, int birthOffset = 0.0f);
 	ParticleEngine(const ParticleEngine& org);
-
-
-private:
-	std::mt19937 m_randEngine;
-	std::uniform_int_distribution<> m_rndDist;
 
 
 private:
@@ -32,27 +27,28 @@ private:
 
 private:
 	bool m_alive;
-	std::vector<std::unique_ptr<Particle>> m_particles;
+	std::list<std::unique_ptr<Particle>> m_particles;
 	int m_startLife;
 	sf::Vector2f m_startPosition;
 	sf::Vector2f m_startVelocity;
 	sf::Vector2f m_accel;
-	const int m_birth;
-	int m_birthGage;
+	const float m_birth;
+	float m_birthGage;
 	float m_scale;
 	float m_mulScale;
+	float m_minScale;
 	sf::Vector2f m_randomPositionScale;
 
 
 public:
-	void update();
+	void update(float framerate);
 	void draw(sf::RenderTarget& target, sf::RenderStates states);
 	void drawBlend(sf::RenderTarget& target, sf::RenderStates states, const sf::Color& color);
 
 
 private:
-	void birthParticle();
-	void updateParticles();
+	void birthParticle(float framerate);
+	void updateParticles(float framerate);
 	void deleteDeadParticles();
 
 
@@ -62,16 +58,13 @@ public:
 	void setStartVelocity(const sf::Vector2f& vel);
 	void setAcceleration(const sf::Vector2f& accel);
 	void setMulScale(float scale);
+	void setMinScale(float limit);
 	void setRandomPositionScale(const sf::Vector2f& scale);
 
 
 public:
 	void stopBirth();
 	std::size_t getParticleCount() const;
-
-
-private:
-	float getRandomFloat();
 };
 
 

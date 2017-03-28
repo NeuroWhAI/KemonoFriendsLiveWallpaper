@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #ifndef _DEBUG
 #include <Windows.h>
@@ -23,7 +24,10 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(wallpaper.getSize().x, wallpaper.getSize().y),
 		"Kemono Friends Live Wallpaper", sf::Style::None);
-	window.setFramerateLimit(120); // 120fps
+	window.setFramerateLimit(60); // 60fps
+
+
+	sf::Clock clock;
 
 
 	while (window.isOpen())
@@ -36,7 +40,13 @@ int main()
 		}
 
 
-		wallpaper.update();
+		float framerate = static_cast<float>(clock.restart().asMilliseconds()) * 0.06f;
+
+		if (framerate > 2.0f)
+			framerate = 2.0f;
+
+
+		wallpaper.update(framerate);
 
 
 		window.clear();

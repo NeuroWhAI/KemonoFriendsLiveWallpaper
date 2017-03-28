@@ -5,33 +5,39 @@
 
 Particle::Particle()
 	: life(100)
+	, position(0, 0)
+	, color(255, 255, 255)
+	, alpha(255.0f)
 	, vel(0, 0)
 	, scale(1.0f)
 	, scaleVel(0.0f)
 	, angle(0.0f)
 	, angleVel(0.0f)
 {
-	vertex.color = sf::Color(255, 255, 255, 255);
+	
 }
 
 //###################################################################################################
 
-void Particle::update()
+void Particle::update(float framerate)
 {
-	if (life > 0)
+	if (life > 0.0f)
 	{
-		--life;
+		life -= framerate;
 	}
 	else
 	{
-		--vertex.color.a;
+		alpha -= framerate;
+
+		if (alpha < 0.0f)
+			alpha = 0.0f;
 	}
 
-	this->vertex.position += vel;
+	position += vel * framerate;
 
-	scale += scaleVel;
+	scale += scaleVel * framerate;
 
-	angle += angleVel;
+	angle += angleVel * framerate;
 	if (angle >= 360.0f)
 		angle -= 360.0f;
 	else if (angle < 0.0f)
@@ -42,6 +48,6 @@ void Particle::update()
 
 bool Particle::isDead() const
 {
-	return (vertex.color.a <= 0);
+	return (alpha <= 0.0f);
 }
 

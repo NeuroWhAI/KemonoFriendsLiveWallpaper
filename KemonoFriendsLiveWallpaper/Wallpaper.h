@@ -35,7 +35,7 @@ private:
 
 
 public:
-	void update();
+	void update(float framerate);
 	void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 

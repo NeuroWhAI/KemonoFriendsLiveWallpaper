@@ -14,8 +14,10 @@ public:
 
 
 public:
-	unsigned int life;
-	sf::Vertex vertex;
+	float life;
+	sf::Vector2f position;
+	sf::Color color;
+	float alpha;
 	sf::Vector2f vel;
 	float scale;
 	float scaleVel;
@@ -24,7 +26,7 @@ public:
 
 
 public:
-	void update();
+	void update(float framerate);
 
 
 public:

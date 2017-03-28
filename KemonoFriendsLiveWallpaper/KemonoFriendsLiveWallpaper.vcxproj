@@ -148,6 +148,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleEngine.cpp" />
+    <ClCompile Include="Rand.cpp" />
     <ClCompile Include="Sandstar.cpp" />
     <ClCompile Include="Volcano.cpp" />
     <ClCompile Include="Wallpaper.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleEngine.h" />
+    <ClInclude Include="Rand.h" />
     <ClInclude Include="Sandstar.h" />
     <ClInclude Include="Volcano.h" />
     <ClInclude Include="Wallpaper.h" />

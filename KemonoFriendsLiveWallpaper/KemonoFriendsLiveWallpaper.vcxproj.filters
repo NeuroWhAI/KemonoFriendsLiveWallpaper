@@ -36,6 +36,9 @@
     <ClCompile Include="Sandstar.cpp">
       <Filter>Wallpaper</Filter>
     </ClCompile>
+    <ClCompile Include="Rand.cpp">
+      <Filter>Wallpaper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Wallpaper.h">
@@ -51,6 +54,9 @@
       <Filter>Wallpaper</Filter>
     </ClInclude>
     <ClInclude Include="Sandstar.h">
+      <Filter>Wallpaper</Filter>
+    </ClInclude>
+    <ClInclude Include="Rand.h">
       <Filter>Wallpaper</Filter>
     </ClInclude>
   </ItemGroup>

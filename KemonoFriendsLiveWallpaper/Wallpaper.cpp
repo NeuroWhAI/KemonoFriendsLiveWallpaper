@@ -4,7 +4,7 @@
 
 
 Wallpaper::Wallpaper()
-	: m_cloudSpeed(0.015625f)
+	: m_cloudSpeed(0.03125f)
 
 	, m_volcano({ 412.0f, 500.0f })
 {
@@ -26,10 +26,10 @@ Wallpaper::Wallpaper()
 
 //###################################################################################################
 
-void Wallpaper::update()
+void Wallpaper::update(float framerate)
 {
-	m_sprCloud.move(m_cloudSpeed, 0.0f);
-	m_sprCloud2.move(m_cloudSpeed, 0.0f);
+	m_sprCloud.move(m_cloudSpeed * framerate, 0.0f);
+	m_sprCloud2.move(m_cloudSpeed * framerate, 0.0f);
 
 	if (m_sprCloud2.getPosition().x >= 0.0f)
 	{
@@ -38,7 +38,7 @@ void Wallpaper::update()
 	}
 
 
-	m_volcano.update();
+	m_volcano.update(framerate);
 }
 
 
