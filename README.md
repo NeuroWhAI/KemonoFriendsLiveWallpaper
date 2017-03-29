@@ -8,3 +8,7 @@ Sandstar Volcano
 
 * Windows
 * [SFML](https://github.com/SFML/SFML)
+
+## Download
+
+[From GitHub.](https://github.com/NeuroWhAI/KemonoFriendsLiveWallpaper/releases)
