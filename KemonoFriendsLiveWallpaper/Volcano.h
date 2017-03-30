@@ -39,10 +39,12 @@ private:
 
 
 private:
+	std::vector<ParticleEngine*> m_senseEngines;
 	ParticleEngine m_senseEngine1;
 	ParticleEngine m_senseEngine2;
 	ParticleEngine m_senseEngine3;
 	ParticleEngine m_senseEngine4;
+	ParticleEngine m_senseEngine5;
 
 
 private:

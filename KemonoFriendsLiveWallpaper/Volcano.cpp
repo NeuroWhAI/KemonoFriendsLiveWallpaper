@@ -8,10 +8,11 @@ Volcano::Volcano(const sf::Vector2f& position)
 	, m_spreadGage(256.0f)
 	, m_flowGage(256.0f)
 
-	, m_senseEngine1(m_texSense, 700, 0)
-	, m_senseEngine2(m_texSense, 700, 400)
-	, m_senseEngine3(m_texSense, 400, 100)
-	, m_senseEngine4(m_texSense, 400, 100)
+	, m_senseEngine1(m_texSense, 2000, 3)
+	, m_senseEngine2(m_texSense, 700, 414)
+	, m_senseEngine3(m_texSense, 400, 133)
+	, m_senseEngine4(m_texSense, 400, 99)
+	, m_senseEngine5(m_texSense, 700, 659)
 
 	, m_randEngine(std::random_device()())
 {
@@ -82,29 +83,41 @@ Volcano::Volcano(const sf::Vector2f& position)
 	{ 0.008f, -0.002f }, { 0.0f, -0.0001f });
 
 
-	m_senseEngine1.setStartLife(1124);
+	m_senseEngine1.setStartLife(2624);
 	m_senseEngine1.setStartPosition(m_position + sf::Vector2f(-25, 8));
 	m_senseEngine1.setStartVelocity({ 0.0f, -0.06f });
 	m_senseEngine1.setAcceleration({ 0.0f, 0.0f });
 	m_senseEngine1.setRandomPositionScale({ 50.0f, 16.0f });
+	m_senseEngines.emplace_back(&m_senseEngine1);
 
-	m_senseEngine2.setStartLife(1124);
-	m_senseEngine2.setStartPosition(m_position + sf::Vector2f(25, 8));
+	m_senseEngine2.setStartLife(1224);
+	m_senseEngine2.setStartPosition(m_position + sf::Vector2f(8, 8));
 	m_senseEngine2.setStartVelocity({ 0.0f, -0.06f });
 	m_senseEngine2.setAcceleration({ 0.0f, 0.0f });
 	m_senseEngine2.setRandomPositionScale({ 50.0f, 16.0f });
+	m_senseEngines.emplace_back(&m_senseEngine2);
 
-	m_senseEngine3.setStartLife(1424);
+	m_senseEngine3.setStartLife(3000);
 	m_senseEngine3.setStartPosition(m_position + sf::Vector2f(16, 8));
-	m_senseEngine3.setStartVelocity({ 0.0f, -0.08f });
-	m_senseEngine3.setAcceleration({ 0.0f, 0.0f });
+	m_senseEngine3.setStartVelocity({ 0.0f, -0.09f });
+	m_senseEngine3.setAcceleration({ 0.0f, 0.00002f });
 	m_senseEngine3.setRandomPositionScale({ 50.0f, 16.0f });
+	m_senseEngines.emplace_back(&m_senseEngine3);
 
-	m_senseEngine4.setStartLife(1424);
+	m_senseEngine4.setStartLife(1524);
 	m_senseEngine4.setStartPosition(m_position + sf::Vector2f(-70, 0));
 	m_senseEngine4.setStartVelocity({ -0.06f, -0.06f });
 	m_senseEngine4.setAcceleration({ 0.00004f, 0.0f });
 	m_senseEngine4.setRandomPositionScale({ 24.0f, 16.0f });
+	m_senseEngines.emplace_back(&m_senseEngine4);
+
+	m_senseEngine5.setStartLife(2024);
+	m_senseEngine5.setStartPosition(m_position + sf::Vector2f(70, 0));
+	m_senseEngine5.setStartVelocity({ 0.072f, -0.06f });
+	m_senseEngine5.setAcceleration({ -0.00004f, 0.0f });
+	m_senseEngine5.setRandomPositionScale({ 24.0f, 16.0f });
+	m_senseEngine5.setMinScale(0.6f);
+	m_senseEngines.emplace_back(&m_senseEngine5);
 
 
 	m_randomSpread = std::uniform_int_distribution<>(0, static_cast<int>(m_spreadTemplates.size()) - 1);
@@ -151,10 +164,10 @@ void Volcano::update(float framerate)
 	}
 
 
-	m_senseEngine1.update(framerate);
-	m_senseEngine2.update(framerate);
-	m_senseEngine3.update(framerate);
-	m_senseEngine4.update(framerate);
+	for (ParticleEngine* pSense : m_senseEngines)
+	{
+		pSense->update(framerate);
+	}
 }
 
 
@@ -169,9 +182,14 @@ void Volcano::draw(sf::RenderTarget& target, sf::RenderStates states)
 	target.draw(m_sprVolcano, states);
 
 
-	m_senseEngine1.draw(target, states);
-	m_senseEngine2.draw(target, states);
-	m_senseEngine3.draw(target, states);
-	m_senseEngine4.draw(target, states);
+	for (ParticleEngine* pSense : m_senseEngines)
+	{
+		pSense->draw(target, states);
+	}
+
+	for (ParticleEngine* pSense : m_senseEngines)
+	{
+		pSense->drawBlend(target, states, sf::Color(233, 251, 143, 64));
+	}
 }
 
