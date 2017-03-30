@@ -11,4 +11,10 @@ Sandstar Volcano
 
 ## Download
 
-[From GitHub.](https://github.com/NeuroWhAI/KemonoFriendsLiveWallpaper/releases)
+* [From GitHub.](https://github.com/NeuroWhAI/KemonoFriendsLiveWallpaper/releases)
+
+## Run
+
+1. Build 'KemonoFriendsLiveWallpaper' and 'WallpaperManager'.
+1. Put 'KemonoFriendsLiveWallpaper.exe', 'WallpaperManager.exe' and 'KemonoFriendsLiveWallpaper/Res' in the same folder.
+1. Execute 'WallpaperManager.exe'.
