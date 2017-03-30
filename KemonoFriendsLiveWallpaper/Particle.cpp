@@ -24,6 +24,13 @@ void Particle::update(float framerate)
 	if (life > 0.0f)
 	{
 		life -= framerate;
+
+		if (alpha < 255.0f)
+		{
+			alpha += framerate * 16.0f;
+			if (alpha > 255.0f)
+				alpha = 255.0f;
+		}
 	}
 	else
 	{

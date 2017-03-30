@@ -90,9 +90,12 @@ void ParticleEngine::drawBlend(sf::RenderTarget& target, sf::RenderStates states
 
 	for (auto& particle : m_particles)
 	{
+		auto drawColor = color;
+		drawColor.a = static_cast<decltype(drawColor.a)>(particle->alpha / 255.0f * color.a);
+
 		m_sprite.setPosition(particle->position);
 		m_sprite.setScale(particle->scale, particle->scale);
-		m_sprite.setColor(color);
+		m_sprite.setColor(drawColor);
 		m_sprite.setRotation(particle->angle);
 
 		target.draw(m_sprite, states);
@@ -118,6 +121,7 @@ void ParticleEngine::birthParticle(float framerate)
 		particle->angle = 180.0f * std::abs(Rand::getRandomFloat());
 		particle->angleVel = 0.08f * Rand::getRandomFloat();
 		particle->vel = m_startVelocity;
+		particle->alpha = 0.1f;
 
 
 		std::uniform_int_distribution<> idxDist{ 0, static_cast<int>(m_particles.size()) };
